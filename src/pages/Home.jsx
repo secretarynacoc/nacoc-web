@@ -215,13 +215,13 @@ const Home = () => {
                  {/* Logo Side */}
                  <div className="flex flex-col gap-8 justify-center items-center p-8 bg-white rounded-2xl shadow-xl min-h-[300px]">
                       <img 
-                        src="https://nacoc.org/wp-content/uploads/2025/05/virtural-team-member-5-e1748341032903.png" 
+                        src="https://cms.nacoc.org/wp-content/uploads/2025/05/virtural-team-member-5-e1748341032903.png" 
                         alt="Platinum Sponsor" 
                         className="max-w-[280px] w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
                       />
                       <div className="w-3/4 h-px bg-slate-100"></div>
                       <img 
-                        src="https://nacoc.org/wp-content/uploads/2025/05/virtural-team-member-5-1-e1748341077152.png" 
+                        src="https://cms.nacoc.org/wp-content/uploads/2025/05/virtural-team-member-5-1-e1748341077152.png" 
                         alt="Platinum Sponsor" 
                         className="max-w-[280px] w-full h-auto object-contain hover:scale-105 transition-transform duration-300"
                       />
@@ -236,7 +236,7 @@ const Home = () => {
                         autoPlay
                         loop
                         playsInline
-                        src="https://nacoc.org/wp-content/uploads/2025/05/NXGA-Video-EDITED-.mp4"
+                        src="https://cms.nacoc.org/wp-content/uploads/2025/05/NXGA-Video-EDITED-.mp4"
                     >
                         Your browser does not support the video tag.
                     </video>

@@ -67,35 +67,35 @@ const About = () => {
   const [selectedLeader, setSelectedLeader] = useState(null);
 
   const executiveCommittee = [
-     { name: 'Suraj Poudyal', role: 'President', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-4.png' },
-     { name: 'Smriti Karki, CPA', role: 'Immediate Past President', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-2-1.png' },
-     { name: 'Suresh Pokhrel', role: 'Vice President', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-12.png' },
-     { name: 'Suresh Basyal', role: 'General Secretary', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-11.png' },
-     { name: 'Shraddha Shrestha', role: 'Secretary', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-6-1.png' },
-     { name: 'Bilas Upadhyay, CPA', role: 'Treasurer', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Suraj Poudyal', role: 'President', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-4.png' },
+     { name: 'Smriti Karki, CPA', role: 'Immediate Past President', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-2-1.png' },
+     { name: 'Suresh Pokhrel', role: 'Vice President', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-12.png' },
+     { name: 'Suresh Basyal', role: 'General Secretary', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-11.png' },
+     { name: 'Shraddha Shrestha', role: 'Secretary', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-6-1.png' },
+     { name: 'Bilas Upadhyay, CPA', role: 'Treasurer', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
   ];
 
   const boardDirectors = [
-     { name: 'Pradip Giri', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-3-3.png' },
-     { name: 'Dipak Silwal', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-7-1.png' },
-     { name: 'Manoj Katwal', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-3-2.png' },
-     { name: 'Suman Karki', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
-     { name: 'Basanta Panta', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
-     { name: 'Basu Shrestha', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
-     { name: 'Raslina Joshi', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-6-2.png' },
-     { name: 'Santosh Chaudhary', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-7-2.png' },
-     { name: 'Bijaya Humagain', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
-     { name: 'Mitesh Koirala', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
-     { name: 'Raj Bhetwal', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
-     { name: 'Shova Gyawali', role: 'Board Director', img: 'https://nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Pradip Giri', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-3-3.png' },
+     { name: 'Dipak Silwal', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-7-1.png' },
+     { name: 'Manoj Katwal', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-3-2.png' },
+     { name: 'Suman Karki', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Basanta Panta', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Basu Shrestha', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Raslina Joshi', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-6-2.png' },
+     { name: 'Santosh Chaudhary', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-7-2.png' },
+     { name: 'Bijaya Humagain', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Mitesh Koirala', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Raj Bhetwal', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
+     { name: 'Shova Gyawali', role: 'Board Director', img: 'https://cms.nacoc.org/wp-content/uploads/woocommerce-placeholder.png' },
   ];
 
   const directorsAdvisors = [
-      { name: 'Manoj Sigdel', role: 'Executive Director', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-5.png' },
-      { name: 'Sita Sapkota', role: 'Advisor', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-3.png' },
-      { name: 'Bhim Karki', role: 'Advisor', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-6.png' },
-      { name: 'Niraj Shrestha', role: 'Advisor', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-7.png' },
-      { name: 'Reena Batra', role: 'Advisor', img: 'https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-8.png' },
+      { name: 'Manoj Sigdel', role: 'Executive Director', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-5.png' },
+      { name: 'Sita Sapkota', role: 'Advisor', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-3.png' },
+      { name: 'Bhim Karki', role: 'Advisor', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-6.png' },
+      { name: 'Niraj Shrestha', role: 'Advisor', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-7.png' },
+      { name: 'Reena Batra', role: 'Advisor', img: 'https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-8.png' },
   ];
 
   const guidelines = [
@@ -175,7 +175,7 @@ const About = () => {
                   </p>
                   <div className="flex items-center px-2">
                       <div className="w-10 h-10 overflow-hidden rounded-full mr-3 shrink-0">
-                          <img src="https://nacoc.org/wp-content/uploads/2023/01/Untitled-design-4.png" alt="Suraj Poudyal" className="w-full h-full object-cover" />
+                          <img src="https://cms.nacoc.org/wp-content/uploads/2023/01/Untitled-design-4.png" alt="Suraj Poudyal" className="w-full h-full object-cover" />
                       </div>
                       <div>
                           <div className="font-bold text-slate-900 text-sm">Suraj Poudyal</div>
