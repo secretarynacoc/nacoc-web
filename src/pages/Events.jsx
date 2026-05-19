@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Calendar, MapPin, Clock, ArrowRight } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowRight, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 import { cleanWpHtml } from '../utils/wpContent';
@@ -8,6 +8,7 @@ import { cleanWpHtml } from '../utils/wpContent';
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -26,6 +27,39 @@ const Events = () => {
 
     fetchEvents();
   }, []);
+
+  const processedEvents = useMemo(() => {
+    // 1. Sort: Upcoming first (Future events ascending, then past events descending)
+    const now = new Date().getTime();
+    let sorted = [...events].sort((a, b) => {
+      const dateA = new Date(a.start_date || a.date).getTime();
+      const dateB = new Date(b.start_date || b.date).getTime();
+      
+      const isFutureA = dateA >= now;
+      const isFutureB = dateB >= now;
+
+      if (isFutureA && !isFutureB) return -1;
+      if (!isFutureA && isFutureB) return 1;
+      
+      if (isFutureA && isFutureB) {
+        return dateA - dateB; // Closer future first
+      } else {
+        return dateB - dateA; // Closer past first
+      }
+    });
+
+    // 2. Search filter
+    if (searchQuery.trim()) {
+      const lowerQuery = searchQuery.toLowerCase();
+      sorted = sorted.filter(event => {
+        const title = (typeof event.title === 'object' ? event.title?.rendered : event.title) || '';
+        const description = (typeof event.description === 'object' ? event.description?.rendered : event.description) || '';
+        return title.toLowerCase().includes(lowerQuery) || description.toLowerCase().includes(lowerQuery);
+      });
+    }
+
+    return sorted;
+  }, [events, searchQuery]);
 
   if (loading) {
     return (
@@ -63,24 +97,48 @@ const Events = () => {
       </section>
 
       {/* Events Grid */}
-      <section className="py-20">
+      <section className="py-10">
         <div className="container mx-auto px-6">
-          {events.length === 0 ? (
+          <div className="mb-10 max-w-md mx-auto">
+            <div className="relative flex items-center">
+              <Search className="absolute left-4 text-slate-400" size={20} />
+              <input
+                type="text"
+                placeholder="Search events..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent shadow-sm bg-white"
+              />
+            </div>
+          </div>
+
+          {processedEvents.length === 0 ? (
              <div className="text-center py-20">
                 <Calendar size={48} className="mx-auto text-slate-300 mb-4" />
                 <h3 className="text-xl font-bold text-slate-500">No events found</h3>
              </div>
           ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {events.map((event, index) => {
+            {processedEvents.map((event, index) => {
               // Handle Tribe Events API date format
               const dateObj = new Date(event.start_date || event.date);
-              const month = dateObj.toLocaleDateString('en-US', { month: 'short' });
-              const day = dateObj.toLocaleDateString('en-US', { day: 'numeric' });
+              let month = 'TBA';
+              let day = '-';
+              if (!isNaN(dateObj)) {
+                 try {
+                   month = dateObj.toLocaleDateString('en-US', { month: 'short' });
+                   day = dateObj.toLocaleDateString('en-US', { day: 'numeric' });
+                 } catch (e) {
+                   console.error("Invalid date parsing", event);
+                 }
+              }
 
               // Get featured image from Tribe API (image can be object or string)
-              const imageUrl = (typeof event.image === 'object' ? event.image?.url : event.image) || event.featured_image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+              const imageUrl = (typeof event.image === 'object' ? event.image?.url : (typeof event.image === 'string' && event.image !== '' ? event.image : null)) || event.featured_image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
 
+              // Extract title safely
+              const safeTitle = (typeof event.title === 'object' ? event.title?.rendered : event.title) || 'Event';
+              
               // Extract venue name (Tribe API returns venue as object)
               const venueName = typeof event.venue === 'object' && event.venue !== null
                 ? (event.venue.venue || event.venue.address || event.venue.city || '')
@@ -98,7 +156,7 @@ const Events = () => {
                 <div className="relative overflow-hidden h-64">
                    <img 
                      src={imageUrl} 
-                     alt={event.title} 
+                     alt={safeTitle.replace(/<[^>]+>/g, '')} 
                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'; }}
                    />
@@ -110,12 +168,12 @@ const Events = () => {
                 
                 <div className="p-8 flex flex-col justify-between flex-1">
                    <div>
-                      {event.start_date && (
+                      {event.start_date && !isNaN(new Date(event.start_date)) && (
                           <div className="flex items-center text-xs font-bold text-primary uppercase tracking-wider mb-2">
                             <Clock size={14} className="mr-1" /> {new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                           </div>
                       )}
-                      <h3 className="font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors text-2xl" dangerouslySetInnerHTML={{ __html: typeof event.title === 'object' ? event.title?.rendered : event.title }}>
+                      <h3 className="font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors text-2xl" dangerouslySetInnerHTML={{ __html: safeTitle }}>
                       </h3>
                       {venueName && (
                         <div className="flex items-start text-slate-500 mb-4 text-sm font-medium">
