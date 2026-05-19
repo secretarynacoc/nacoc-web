@@ -4,7 +4,7 @@
 // from the WordPress backend. There are no mock fallbacks — if WordPress
 // returns an error or empty array, the UI shows the empty / not-found state.
 
-const WP_ORIGIN = import.meta.env.VITE_WP_ORIGIN || 'https://nacoc.org';
+const WP_ORIGIN = import.meta.env.VITE_WP_ORIGIN || 'https://cms.nacoc.org';
 const BASE_URL = `${WP_ORIGIN}/wp-json/wp/v2`;
 const TRIBE_URL = `${WP_ORIGIN}/wp-json/tribe/events/v1`;
 
