@@ -376,7 +376,7 @@ He continues to shape the future of resilient, inclusive, and environmentally re
             </div>
 
             {/* Board Of Directors */}
-            <SectionHeading><span className="text-white">Board of Directors</span></SectionHeading>
+            <SectionHeading><span className="text-white">Executive Members</span></SectionHeading>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 mb-12">
                 {boardDirectors.map(renderMemberCard)}
             </div>

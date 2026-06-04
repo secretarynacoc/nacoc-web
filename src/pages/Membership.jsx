@@ -81,7 +81,7 @@ const Membership = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="text-4xl lg:text-6xl font-heading font-bold text-slate-900 mb-6 leading-tight"
           >
-            Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Impact</span>
+            Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Life Member</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -89,12 +89,12 @@ const Membership = () => {
             transition={{ delay: 0.2 }}
             className="text-slate-600 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Invest in your business and your community. Select the tier that best fits your growth strategy.
+            Join a community of committed leaders investing in economic growth, advocacy, and lasting impact for the Nepalese American business community.
           </motion.p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 gap-8 max-w-md mx-auto">
+        <div className="grid grid-cols-1 gap-8 max-w-lg mx-auto">
           {tiers.map((tier, index) => (
             <motion.div 
               key={index}
@@ -158,7 +158,7 @@ const Membership = () => {
                    }`}
                   >
                     {MEMBERSHIP_ENABLED ? (
-                      <>Choose Plan <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" /></>
+                      <>Become a Life Member <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" /></>
                     ) : (
                       <>Coming Soon</>
                     )}
@@ -179,10 +179,6 @@ const Membership = () => {
           <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-16">
              <div className="flex flex-col items-center gap-2 group cursor-default">
                 <span className="text-xl lg:text-2xl font-bold text-slate-400 group-hover:text-primary transition-colors">Ranger Wholesale</span>
-                <span className="h-1 w-12 bg-slate-200 group-hover:bg-primary rounded-full transition-colors"></span>
-             </div>
-             <div className="flex flex-col items-center gap-2 group cursor-default">
-                <span className="text-xl lg:text-2xl font-bold text-slate-400 group-hover:text-primary transition-colors">MMB Live Solution</span>
                 <span className="h-1 w-12 bg-slate-200 group-hover:bg-primary rounded-full transition-colors"></span>
              </div>
           </div>

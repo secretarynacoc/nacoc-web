@@ -97,12 +97,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-slate-700/50 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+        <div className="border-t border-slate-700/50 mt-16 pt-8 flex justify-center items-center text-xs text-slate-500 gap-4">
           <p>&copy; {new Date().getFullYear()} Nepalese American Chamber of Commerce. All rights reserved.</p>
-          <div className="flex gap-6">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>

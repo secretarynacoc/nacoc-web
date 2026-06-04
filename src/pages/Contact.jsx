@@ -172,11 +172,11 @@ const Contact = () => {
                     </div>
                     
                     <div>
-                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Organisation</label>
+                        <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Organization</label>
                         <input
                             type="text"
-                            name="organisation"
-                            value={formData.organisation}
+                            name="organization"
+                            value={formData.organization}
                             onChange={handleChange}
                             className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all placeholder:text-slate-400"
                             placeholder="Company or organization (optional)"
