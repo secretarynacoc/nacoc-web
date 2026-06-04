@@ -94,7 +94,7 @@ const Contact = () => {
                             </div>
                             <div className="ml-5">
                                 <h4 className="font-bold text-slate-900 mb-1">Our Location</h4>
-                                <p className="text-slate-500 text-sm leading-relaxed">2016 W. Grauwyler Rd,<br/>Irving, TX, 75061</p>
+                                <p className="text-slate-500 text-sm leading-relaxed">1212 Royal Pkwy,<br/>Euless, TX 76040</p>
                             </div>
                         </div>
 
@@ -104,7 +104,7 @@ const Contact = () => {
                             </div>
                             <div className="ml-5">
                                 <h4 className="font-bold text-slate-900 mb-1">Phone Number</h4>
-                                <p className="text-slate-500 text-sm">+1 (214) 995-0137</p>
+                                <p className="text-slate-500 text-sm">+1 (469) 345-6419</p>
                                 <p className="text-slate-400 text-xs mt-1">Mon-Fri 9am-6pm</p>
                             </div>
                         </div>
@@ -246,7 +246,7 @@ const Contact = () => {
         {/* Map Placeholder */}
         <div className="mt-16 rounded-3xl overflow-hidden shadow-lg border border-slate-100 h-96 relative bg-slate-100 group">
              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3351.467860265725!2d-96.92484592429406!3d32.85942497362947!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864e7ed8c2e7428f%3A0xe54c1533c37565d!2s2016%20W%20Grauwyler%20Rd%2C%20Irving%2C%20TX%2075061!5e0!3m2!1sen!2sus!4v1715632123456!5m2!1sen!2sus" 
+                src="https://maps.google.com/maps?q=1212+Royal+Pkwy+Euless+TX+76040&t=&z=15&ie=UTF8&iwloc=&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{border:0}} 

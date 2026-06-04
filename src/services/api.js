@@ -179,4 +179,48 @@ export const api = {
       return { status: 'network_error', message: 'Could not reach the server. Please try again.' };
     }
   },
+
+  // ---------------------------------------------------------------------------
+  // Media upload — WordPress REST API media endpoint
+  //
+  // Endpoint: POST /wp-json/wp/v2/media
+  // Requires WordPress Application Password authentication.
+  //
+  // To set up:
+  //   1. In WP Admin, go to Users → Profile → Application Passwords
+  //   2. Create a new password named "API Upload" and copy it
+  //   3. Provide both the username and password — they are base64'd into
+  //      a Basic-Auth header (never stored or committed)
+  //
+  // uploadMedia(file: File, wpUsername: string, wpAppPassword: string)
+  //   → { id, source_url, sizes, alt_text, ... }
+  // ---------------------------------------------------------------------------
+  uploadMedia: async (file, wpUsername, wpAppPassword) => {
+    if (!wpUsername || !wpAppPassword) {
+      throw new Error('WordPress username and Application Password are required for media uploads.');
+    }
+    const url = `${WP_ORIGIN}/wp-json/wp/v2/media`;
+    const auth = btoa(`${wpUsername}:${wpAppPassword}`);
+    const body = new FormData();
+    body.append('file', file);
+    body.append('title', file.name.replace(/\.[^.]+$/, ''));
+    body.append('alt_text', file.name.replace(/\.[^.]+$/, ''));
+
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${auth}`,
+      },
+      body,
+      mode: 'cors',
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(`Media upload failed (${res.status}): ${err.message || 'Unknown error'}`);
+    }
+
+    return res.json();
+  },
 };

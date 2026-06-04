@@ -19,7 +19,7 @@ const Footer = () => {
             </div>
             
             <p className="text-sm leading-relaxed text-slate-300">
-              <span className="font-bold text-white">Nepalese American Chamber of Commerce</span> advances the economic environment for business, advocating for responsive government and quality education in our community.
+              <span className="font-bold text-white">Nepalese American Chamber of Commerce</span> serves as the leading voice for Nepalese American entrepreneurs, professionals, and businesses — advancing economic growth, supporting business development, and creating opportunities that empower our community to thrive.
             </p>
             
             <div className="flex gap-3">
@@ -71,8 +71,8 @@ const Footer = () => {
                     <MapPin size={18} />
                 </div>
                 <span className="text-slate-300">
-                  <span className="block text-white font-bold mb-1">Mailing Address</span>
-                  2016 W. Grauwyler Rd<br />Irving, TX, 75061
+                   <span className="block text-white font-bold mb-1">Mailing Address</span>
+                   1212 Royal Pkwy<br />Euless, TX 76040
                 </span>
               </li>
               <li className="flex items-center group">
@@ -81,7 +81,7 @@ const Footer = () => {
                 </div>
                 <div>
                    <span className="block text-white font-bold text-xs mb-0.5">Phone</span>
-                   <a href="tel:+12149950137" className="hover:text-white transition-colors text-slate-300">+1 214 995 0137</a>
+                    <a href="tel:+14693456419" className="hover:text-white transition-colors text-slate-300">+1 (469) 345-6419</a>
                 </div>
               </li>
               <li className="flex items-center group">

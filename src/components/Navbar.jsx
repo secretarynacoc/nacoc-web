@@ -52,8 +52,8 @@ const Navbar = () => {
          <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 items-center gap-2 lg:gap-0 relative z-10">
             {/* Left: Contact */}
             <div className="flex flex-col lg:flex-row lg:space-x-6 justify-center lg:justify-start items-center text-white/90 text-xs font-medium gap-1 lg:gap-0">
-               <a href="tel:2149950137" className="flex items-center hover:text-white hover:bg-white/10 px-2 py-0.5 rounded transition-all cursor-pointer">
-                 <Phone size={12} className="mr-2 text-secondary-light" /> +1 (214) 995-0137
+               <a href="tel:4693456419" className="flex items-center hover:text-white hover:bg-white/10 px-2 py-0.5 rounded transition-all cursor-pointer">
+                 <Phone size={12} className="mr-2 text-secondary-light" /> +1 (469) 345-6419
                </a>
                <a href="mailto:info@nacoc.org" className="flex items-center hover:text-white hover:bg-white/10 px-2 py-0.5 rounded transition-all cursor-pointer">
                  <Mail size={12} className="mr-2 text-secondary-light" /> info@nacoc.org
