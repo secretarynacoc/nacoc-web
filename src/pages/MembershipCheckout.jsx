@@ -51,7 +51,7 @@ const MembershipCheckout = () => {
   const navigate = useNavigate();
 
   const plan = location.state?.plan || {
-    name: 'General Membership',
+    name: 'Life Member',
     price: 'Contact Us',
     description: 'Membership application',
   };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, Zap, Crown, Award, ArrowRight, Clock } from 'lucide-react';
+import { Check, Award, ArrowRight, Clock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Feature flag: when 'true', the "Choose Plan" buttons are active and route
@@ -21,28 +21,6 @@ const Membership = () => {
   };
 
   const tiers = [
-    {
-      name: 'General Member',
-      icon: <Zap className="w-6 h-6" />,
-      price: '$100',
-      period: '/ year',
-      description: 'Perfect for individuals and small startups looking to connect.',
-      features: ['Directory Listing', 'Free Access to Mixers', 'Newsletter Subscription', 'Member Badge'],
-      popular: false,
-      color: 'from-blue-400 to-cyan-500',
-      shadow: 'shadow-blue-200'
-    },
-    {
-      name: 'Corporate Member',
-      icon: <Crown className="w-6 h-6" />,
-      price: '$500',
-      period: '/ year',
-      description: 'Ideal for established businesses seeking visibility and growth.',
-      features: ['Priority Directory Listing', 'Free Access to Mixers', 'Newsletter Subscription', 'Logo on Website Homepage', 'Event Sponsorship Discount', 'Job Posting Privileges'],
-      popular: true,
-      color: 'from-primary to-primary-light',
-      shadow: 'shadow-primary/30'
-    },
     {
       name: 'Life Member',
       icon: <Award className="w-6 h-6" />,
@@ -103,7 +81,7 @@ const Membership = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="text-4xl lg:text-6xl font-heading font-bold text-slate-900 mb-6 leading-tight"
           >
-            Choose Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Impact</span>
+            Become a <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Life Member</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
@@ -111,12 +89,12 @@ const Membership = () => {
             transition={{ delay: 0.2 }}
             className="text-slate-600 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Invest in your business and your community. Select the tier that best fits your growth strategy.
+            Join a community of committed leaders investing in economic growth, advocacy, and lasting impact for the Nepalese American business community.
           </motion.p>
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto items-start">
+        <div className="grid grid-cols-1 gap-8 max-w-lg mx-auto">
           {tiers.map((tier, index) => (
             <motion.div 
               key={index}
@@ -180,7 +158,7 @@ const Membership = () => {
                    }`}
                   >
                     {MEMBERSHIP_ENABLED ? (
-                      <>Choose Plan <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" /></>
+                      <>Become a Life Member <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" /></>
                     ) : (
                       <>Coming Soon</>
                     )}
@@ -201,14 +179,6 @@ const Membership = () => {
           <div className="flex flex-wrap justify-center items-center gap-12 lg:gap-16">
              <div className="flex flex-col items-center gap-2 group cursor-default">
                 <span className="text-xl lg:text-2xl font-bold text-slate-400 group-hover:text-primary transition-colors">Ranger Wholesale</span>
-                <span className="h-1 w-12 bg-slate-200 group-hover:bg-primary rounded-full transition-colors"></span>
-             </div>
-             <div className="flex flex-col items-center gap-2 group cursor-default">
-                <span className="text-xl lg:text-2xl font-bold text-slate-400 group-hover:text-primary transition-colors">IBC</span>
-                <span className="h-1 w-12 bg-slate-200 group-hover:bg-primary rounded-full transition-colors"></span>
-             </div>
-             <div className="flex flex-col items-center gap-2 group cursor-default">
-                <span className="text-xl lg:text-2xl font-bold text-slate-400 group-hover:text-primary transition-colors">MMB Live Solution</span>
                 <span className="h-1 w-12 bg-slate-200 group-hover:bg-primary rounded-full transition-colors"></span>
              </div>
           </div>
