@@ -135,7 +135,7 @@ With a people-first approach, Prince is committed to providing value, fostering 
   const boardDirectors = [
      {
        name: 'Dr. Vishnu Maya Upadhyay',
-       role: 'Executive Member',
+       role: 'Board Director',
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-5.jpg',
        bio: `Dr. Vishnu Maya Upadhyay, DNP, APRN, WHCNP-C, FNP-BC, PMHNP-BC, is a triple board-certified Advanced Nurse Practitioner, healthcare entrepreneur, educator, and community leader with over 25 years of experience in healthcare. She is the CEO and Owner of a Primary and Behavioral Health Care Clinic and the Women\u2019s Clinic of Mid-Cities in Texas, dedicated to improving access to quality healthcare and advancing patient outcomes.
 
@@ -145,7 +145,7 @@ Dr. Upadhyay is also a strong advocate for women\u2019s empowerment, mentorship,
      },
      {
        name: 'Pradip Giri',
-       role: 'Executive Member',
+       role: 'Board Director',
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-6.jpg',
        bio: `Pradip Giri is an entrepreneur, retail business owner, and community leader with a background in accounting and more than a decade of corporate experience. He currently manages eight retail locations and leads a team of over 50 employees, demonstrating a strong commitment to operational excellence, strategic growth, and customer-focused service. His professional journey reflects a passion for building successful businesses while creating meaningful opportunities within the communities he serves.
 
@@ -157,7 +157,7 @@ Today, Pradip is focused on urban governance, real estate investment, and strate
      },
       {
         name: 'Samikshya Ojha',
-        role: 'Executive Member',
+        role: 'Board Director',
         img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-7.jpg',
         objectPosition: 'center 25%',
         bio: `Samikshya Ojha is a Relationship Manager in Business Banking with PNC Bank, where she supports small and mid-sized businesses across the Dallas\u2013Fort Worth area with tailored commercial banking solutions. She is passionate about helping business owners strengthen their financial foundations, achieve their goals, and grow their businesses sustainably.
@@ -168,7 +168,7 @@ Outside of her professional career, Samikshya enjoys spending quality time with 
      },
      {
        name: 'Sumanjali Shrestha',
-       role: 'Executive Member',
+       role: 'Board Director',
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-8.jpg',
        bio: `Sumanjali Shrestha is a lecturer, entrepreneur, and investor with over a decade of experience in the accounting and business sectors. Her career is distinguished by a unique blend of academic expertise and practical financial strategy, enabling her to make a meaningful impact in both education and business. She is passionate about empowering the next generation of professionals by helping them develop strong technical skills and build successful, fulfilling careers.
 
@@ -178,7 +178,7 @@ Outside of her professional endeavors, Sumanjali is a devoted mother who enjoys 
      },
      {
        name: 'Bijaya Adhikari',
-       role: 'Executive Member',
+       role: 'Board Director',
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-9.png',
        bio: `Bijaya Adhikari is a Certified Public Accountant (CPA), Mortgage Loan Officer, entrepreneur, and community leader dedicated to helping individuals, families, and businesses achieve their financial goals. With expertise in accounting, taxation, financial planning, and mortgage lending, he brings a comprehensive approach to guiding clients through important financial decisions.
 
@@ -265,6 +265,7 @@ He continues to shape the future of resilient, inclusive, and environmentally re
         <div className="p-3 relative -mt-14 z-10 text-center">
             <div className="bg-slate-900/95 backdrop-blur-sm p-3 rounded-lg border border-slate-700 group-hover:border-secondary/30 transition-colors shadow-lg">
                 <h3 className="text-base font-bold text-white mb-0.5 group-hover:text-secondary transition-colors truncate">{leader.name}</h3>
+                <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{leader.role}</p>
             </div>
         </div>
     </motion.div>
