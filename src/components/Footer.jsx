@@ -46,6 +46,8 @@ const Footer = () => {
               <li><Link to="/directory" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all bg-transparent w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Business Directory</Link></li>
               <li><Link to="/membership" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all bg-transparent w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Membership</Link></li>
               <li><Link to="/contact-us" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all bg-transparent w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Contact Us</Link></li>
+              <li><Link to="/privacy-policy" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all bg-transparent w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Privacy Policy</Link></li>
+              <li><Link to="/terms-of-service" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all bg-transparent w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Terms of Service</Link></li>
             </ul>
           </div>
 

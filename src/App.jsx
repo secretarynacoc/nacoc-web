@@ -17,6 +17,7 @@ import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
 import Blogs from './pages/Blogs';
 import BlogDetails from './pages/BlogDetails';
+import Legal from './pages/Legal';
 // import EConsultReview from './gazuntite/EConsultReview';
 
 import { AuthProvider } from './context/AuthContext';
@@ -68,6 +69,8 @@ function App() {
                       <Route path="/events/:slug" element={<EventDetails />} />
                       <Route path="/blogs" element={<Blogs />} />
                       <Route path="/blogs/:slug" element={<BlogDetails />} />
+                      <Route path="/privacy-policy" element={<Legal type="privacy" />} />
+                      <Route path="/terms-of-service" element={<Legal type="terms" />} />
                       <Route path="*" element={<div className="p-20 text-center">Page not found</div>} />
                   </Routes>
               </MainLayout>
