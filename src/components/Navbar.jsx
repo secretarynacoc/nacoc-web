@@ -55,8 +55,8 @@ const Navbar = () => {
                <a href="tel:4693456419" className="flex items-center hover:text-white hover:bg-white/10 px-2 py-0.5 rounded transition-all cursor-pointer">
                  <Phone size={12} className="mr-2 text-secondary-light" /> +1 (469) 345-6419
                </a>
-               <a href="mailto:info@nacoc.org" className="flex items-center hover:text-white hover:bg-white/10 px-2 py-0.5 rounded transition-all cursor-pointer">
-                 <Mail size={12} className="mr-2 text-secondary-light" /> info@nacoc.org
+               <a href="mailto:secretary@nacoc.org" className="flex items-center hover:text-white hover:bg-white/10 px-2 py-0.5 rounded transition-all cursor-pointer">
+                 <Mail size={12} className="mr-2 text-secondary-light" /> secretary@nacoc.org
                </a>
             </div>
             
