@@ -162,6 +162,12 @@ export const api = {
     }
     const url = `${WP_ORIGIN}/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
     const body = new FormData();
+    // CF7 adds these hidden values when it renders a form in WordPress.
+    // This React frontend is headless, so provide the submission metadata explicitly.
+    body.append('_wpcf7', String(formId));
+    body.append('_wpcf7_locale', 'en_US');
+    body.append('_wpcf7_unit_tag', `wpcf7-f${formId}-p0-o1`);
+    body.append('_wpcf7_container_post', '0');
     Object.entries(fields).forEach(([key, value]) => {
       if (value === null || value === undefined) return;
       if (Array.isArray(value)) {
