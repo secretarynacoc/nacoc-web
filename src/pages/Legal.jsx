@@ -1,42 +1,101 @@
 import React from 'react';
+import { ArrowLeft, FileText, Mail, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+const effectiveDate = 'September 25, 2026';
+
+const Section = ({ id, title, children }) => (
+  <section id={id} className="scroll-mt-28">
+    <h2 className="text-2xl font-heading font-bold text-slate-900 mb-3">{title}</h2>
+    <div className="space-y-4 text-slate-600 leading-7">{children}</div>
+  </section>
+);
 
 const Legal = ({ type }) => {
   const isPrivacy = type === 'privacy';
   const title = isPrivacy ? 'Privacy Policy' : 'Terms of Service';
+  const intro = isPrivacy
+    ? 'How NACOC handles information shared through this website.'
+    : 'The basic terms for using the NACOC website and online resources.';
 
   return (
     <div className="bg-slate-50 min-h-screen pt-20">
-      <section className="bg-slate-900 py-20">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl lg:text-5xl font-heading font-bold text-white">{title}</h1>
-          <p className="mt-4 text-slate-400">Nepalese American Chamber of Commerce</p>
+      <section className="relative overflow-hidden bg-slate-900 py-16 lg:py-20">
+        <div className="absolute -top-32 right-0 h-80 w-80 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -bottom-40 left-0 h-96 w-96 rounded-full bg-secondary/10 blur-3xl" />
+        <div className="container mx-auto relative z-10 px-6">
+          <Link to="/" className="mb-8 inline-flex items-center text-sm font-semibold text-slate-300 hover:text-white">
+            <ArrowLeft size={16} className="mr-2" /> Back to home
+          </Link>
+          <div className="flex items-start gap-4">
+            <div className="hidden h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-secondary sm:flex">
+              {isPrivacy ? <ShieldCheck size={28} /> : <FileText size={28} />}
+            </div>
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-secondary">NACOC policy</p>
+              <h1 className="text-4xl font-heading font-bold text-white lg:text-5xl">{title}</h1>
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-300">{intro}</p>
+              <p className="mt-5 text-sm text-slate-400">Effective date: {effectiveDate}</p>
+            </div>
+          </div>
         </div>
       </section>
-      <article className="container mx-auto max-w-4xl px-6 py-16">
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 lg:p-12 prose prose-slate max-w-none">
-          {isPrivacy ? (
-            <>
-              <p>NACOC respects your privacy. This policy explains how information is handled when you visit our website, contact us, register for an event, or apply for membership.</p>
-              <h2>Information we collect</h2>
-              <p>We may collect information you choose to provide, such as your name, organization, email address, phone number, and message. We may also receive basic technical information needed to operate and secure the website.</p>
-              <h2>How we use information</h2>
-              <p>We use submitted information to respond to inquiries, administer membership and events, provide requested resources, and improve our services. We do not sell personal information.</p>
-              <h2>Contact</h2>
-              <p>Questions about this policy may be sent to <a href="mailto:info@nacoc.org">info@nacoc.org</a>.</p>
-            </>
-          ) : (
-            <>
-              <p>By using this website, you agree to use it lawfully and respectfully. Website content is provided for general informational purposes and may be updated without notice.</p>
-              <h2>Website content</h2>
-              <p>NACOC works to keep information accurate and current, but does not guarantee that every item is complete, current, or free from errors. External links are provided for convenience and are operated by third parties.</p>
-              <h2>Events and resources</h2>
-              <p>Event details, availability, and schedules may change. Participation may be subject to additional registration terms provided for the relevant event or program.</p>
-              <h2>Contact</h2>
-              <p>Questions about these terms may be sent to <a href="mailto:info@nacoc.org">info@nacoc.org</a>.</p>
-            </>
-          )}
+
+      <main className="container mx-auto px-6 py-12 lg:py-16">
+        <div className="grid gap-8 lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start">
+          <aside className="lg:sticky lg:top-28">
+            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+              <p className="mb-4 text-xs font-bold uppercase tracking-widest text-slate-400">On this page</p>
+              <nav className="space-y-2 text-sm">
+                <a href="#overview" className="block rounded-lg px-3 py-2 font-semibold text-slate-600 hover:bg-slate-50 hover:text-primary">Overview</a>
+                <a href="#information" className="block rounded-lg px-3 py-2 font-semibold text-slate-600 hover:bg-slate-50 hover:text-primary">Key information</a>
+                <a href="#contact" className="block rounded-lg px-3 py-2 font-semibold text-slate-600 hover:bg-slate-50 hover:text-primary">Contact</a>
+              </nav>
+            </div>
+          </aside>
+
+          <article className="rounded-3xl border border-slate-200 bg-white p-7 shadow-sm sm:p-10 lg:p-14">
+            {isPrivacy ? (
+              <div className="space-y-10">
+                <Section id="overview" title="Overview">
+                  <p>The Nepalese American Chamber of Commerce (NACOC) is a nonprofit organization serving Nepalese American entrepreneurs, professionals, and businesses. This policy explains how we handle information submitted through nacoc.org.</p>
+                </Section>
+                <Section id="information" title="Information we collect and use">
+                  <p>We may collect information you provide, such as your name, organization, email, phone number, message, membership details, event registration details, or business-directory information.</p>
+                  <p>We use this information to respond to inquiries, administer memberships and events, provide requested services, and maintain website security. Hosting and security services may also receive basic technical information such as browser, device, and IP information.</p>
+                  <p>NACOC does not sell personal information. We may share information with service providers supporting our website and programs, or when required by law.</p>
+                </Section>
+                <Section id="choices" title="Your choices">
+                  <p>You may contact us to request a correction or ask about information you submitted. We retain information only as reasonably needed for organizational, legal, security, or recordkeeping purposes.</p>
+                  <p>Third-party services linked from this website have their own privacy policies. This website is not directed to children under 13.</p>
+                </Section>
+                <Section id="contact" title="Contact">
+                  <p>We may update this policy as our website or programs change.</p>
+                  <p className="flex items-start gap-2"><Mail size={18} className="mt-1 shrink-0 text-primary" /><span>Questions or privacy requests: <a className="font-semibold text-primary hover:underline" href="mailto:info@nacoc.org">info@nacoc.org</a>.</span></p>
+                </Section>
+              </div>
+            ) : (
+              <div className="space-y-10">
+                <Section id="overview" title="Using this website">
+                  <p>By using the NACOC website, you agree to use it lawfully and respectfully. The website provides general information about NACOC, its programs, events, membership, and community resources.</p>
+                </Section>
+                <Section id="information" title="Content, events, and submissions">
+                  <p>Website content, event details, schedules, and external resources may change without notice. Information is general and is not legal, tax, financial, immigration, or other professional advice.</p>
+                  <p>When submitting a message, membership application, event registration, business listing, or other material, you agree that the information is accurate and that you have the right to submit it. Additional terms may apply to specific events or services.</p>
+                </Section>
+                <Section id="acceptable-use" title="Acceptable use">
+                  <p>You may not submit false information, violate another person’s rights, distribute spam or malware, interfere with the website, or attempt unauthorized access. NACOC may remove content or restrict access when reasonably necessary to protect the website or community.</p>
+                  <p>External websites and services are operated by third parties and are governed by their own terms and policies.</p>
+                </Section>
+                <Section id="contact" title="Contact">
+                  <p>The website is provided on an “as available” basis. NACOC may update these terms as the website or programs change.</p>
+                  <p className="flex items-start gap-2"><Mail size={18} className="mt-1 shrink-0 text-primary" /><span>Questions about these terms: <a className="font-semibold text-primary hover:underline" href="mailto:info@nacoc.org">info@nacoc.org</a>.</span></p>
+                </Section>
+              </div>
+            )}
+          </article>
         </div>
-      </article>
+      </main>
     </div>
   );
 };
