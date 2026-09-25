@@ -322,18 +322,19 @@ He continues to shape the future of resilient, inclusive, and environmentally re
               transition={{ delay: 0.2, duration: 0.6 }}
               className="lg:w-1/2"
            >
-              <div className="relative bg-white p-6 rounded-2xl shadow-xl border border-slate-100 max-w-sm mx-auto">
-                  <Quote className="text-primary/20 w-10 h-10 mb-2" />
-                  <p className="text-base italic text-slate-700 mb-4 px-2">
+              <div className="relative bg-white p-8 lg:p-10 rounded-2xl shadow-xl border border-slate-100 max-w-lg mx-auto">
+                  <div className="text-xs text-secondary uppercase font-bold tracking-[0.2em] mb-4">President's Message</div>
+                  <Quote className="text-primary/20 w-12 h-12 mb-4" />
+                  <p className="text-xl lg:text-2xl italic leading-relaxed text-slate-800 mb-8 px-2">
                       "Our mission is simple yet profound: to create an environment where businesses don't just survive, but truly thrive through connection and support."
                   </p>
                   <div className="flex items-center px-2">
-                      <div className="w-10 h-10 overflow-hidden rounded-full mr-3 shrink-0">
+                      <div className="w-14 h-14 overflow-hidden rounded-full mr-4 shrink-0 ring-2 ring-secondary/20">
                             <img src="https://cms.nacoc.org/wp-content/uploads/2026/06/image-1.jpg" alt="Shraddha Shrestha" className="w-full h-full object-cover" />
                       </div>
                       <div>
-                           <div className="font-bold text-slate-900 text-sm">Shraddha Shrestha</div>
-                           <div className="text-[10px] text-secondary uppercase font-bold tracking-widest">President, 2026-2027</div>
+                           <div className="font-bold text-slate-900 text-base">Shraddha Shrestha</div>
+                           <div className="text-xs text-secondary uppercase font-bold tracking-widest">President, 2026-2027</div>
                       </div>
                   </div>
               </div>
