@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Users, TrendingUp, Calendar, ArrowUpRight, MapPin, Clock, Shield, Award, Quote } from 'lucide-react';
+import { ArrowRight, Users, TrendingUp, Calendar, ArrowUpRight, MapPin, Clock, Shield, Award } from 'lucide-react';
 import { api } from '../services/api';
 import { adaptEvent } from '../services/adapters';
 
@@ -197,38 +197,6 @@ const Home = () => {
                </div>
             </div>
          </div>
-      </section>
-
-      {/* President's Message */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto rounded-3xl bg-slate-50 border border-slate-100 shadow-lg p-8 lg:p-10 flex flex-col md:flex-row items-center gap-8">
-            <div className="shrink-0 w-24 h-24 rounded-full overflow-hidden ring-4 ring-secondary/10">
-              <img
-                src="https://cms.nacoc.org/wp-content/uploads/2026/06/image-1.jpg"
-                alt="Shraddha Shrestha"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="text-center md:text-left flex-1">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-3">
-                <Quote className="text-primary/30 w-6 h-6" />
-                <span className="text-secondary font-bold uppercase tracking-[0.2em] text-xs">From the President</span>
-              </div>
-              <p className="text-xl lg:text-2xl italic leading-relaxed text-slate-800 mb-4">
-                “Our mission is simple yet profound: to create an environment where businesses don’t just survive, but truly thrive through connection and support.”
-              </p>
-              <div className="flex flex-col sm:flex-row items-center md:items-start sm:gap-3 text-sm">
-                <span className="font-bold text-slate-900">Shraddha Shrestha</span>
-                <span className="hidden sm:inline text-slate-300">•</span>
-                <span className="text-secondary font-bold uppercase tracking-wider text-xs">President, 2026–2027</span>
-              </div>
-            </div>
-            <Link to="/about-us" className="shrink-0 inline-flex items-center gap-2 text-primary font-bold text-sm hover:text-secondary transition-colors">
-              Meet Our Leadership <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
       </section>
 
       {/* Featured Partners / Platinum Sponsor Video */}
