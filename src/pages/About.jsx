@@ -34,7 +34,6 @@ const LeadershipModal = ({ leader, onClose }) => {
                 />
                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent flex flex-col justify-end p-6">
                   <h3 className="text-white text-2xl font-bold">{leader.name}</h3>
-                  <p className="text-secondary font-bold uppercase tracking-wider text-xs">{leader.role}</p>
                </div>
             </div>
              <div className="p-6 max-h-[50vh] overflow-y-auto">
