@@ -6,18 +6,15 @@ const LeadershipModal = ({ leader, onClose }) => {
   if (!leader) return null;
 
   return (
-    <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm"
       onClick={onClose}
     >
-      <motion.div 
-        initial={{ scale: 0.95, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.95, opacity: 0 }}
+      <div
         onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${leader.name} biography`}
         className="bg-white rounded-2xl overflow-hidden max-w-xl w-full shadow-2xl relative"
       >
         <button onClick={onClose} className="absolute top-4 right-4 p-2 bg-black/40 hover:bg-black/70 border border-white/30 rounded-full text-white transition-colors z-20 shadow-lg">
@@ -49,21 +46,23 @@ const LeadershipModal = ({ leader, onClose }) => {
                   }
                 </div>
                
-               <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Connect</h4>
                {leader.email && (
-               <div className="flex gap-2">
-                  <a
-                    href={`mailto:${leader.email}`}
-                    className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 text-slate-700 rounded-md hover:bg-slate-100 transition-colors font-semibold text-xs"
-                  >
-                     <Mail size={14} /> Email
-                  </a>
-               </div>
+                 <>
+                   <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Connect</h4>
+                   <div className="flex gap-2">
+                     <a
+                       href={`mailto:${leader.email}`}
+                       className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 text-slate-700 rounded-md hover:bg-slate-100 transition-colors font-semibold text-xs"
+                     >
+                       <Mail size={14} /> Email
+                     </a>
+                   </div>
+                 </>
                )}
             </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
