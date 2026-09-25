@@ -212,38 +212,25 @@ const EventDetails = () => {
                            </div>
                         </div>
 
-                        {event.website && (
-                          <div className="flex items-start group">
-                             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0 mt-1">
-                                 <Globe size={18} />
-                             </div>
-                             <div className="ml-4 break-words overflow-hidden w-full max-w-[200px]">
-                                <span className="block text-xs font-bold text-slate-400 uppercase tracking-wide">Website</span>
-                                <a href={event.website} target="_blank" rel="noopener noreferrer" className="block text-sm font-bold text-primary hover:underline truncate w-full" title={event.website}>
-                                  {event.website.replace(/^https?:\/\//, '')}
-                                </a>
-                             </div>
-                          </div>
-                        )}
                     </div>
 
                     <div className="mt-8 pt-8 border-t border-slate-100 relative z-10">
-                       {isFutureEvent ? (
-                          <>
-                           {event.website ? (
-                             <a href={event.website} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-gradient-to-r from-secondary to-secondary-light hover:from-secondary-light hover:to-secondary text-slate-900 font-bold rounded-xl transition-all shadow-lg hover:shadow-secondary/30 transform hover:-translate-y-1 text-center">
-                                Register Now
-                             </a>
-                           ) : (
-                             <button className="w-full py-4 bg-gradient-to-r from-secondary to-secondary-light hover:from-secondary-light hover:to-secondary text-slate-900 font-bold rounded-xl transition-all shadow-lg hover:shadow-secondary/30 transform hover:-translate-y-1">
-                                Register Now
-                             </button>
-                           )}
-                           <p className="text-center text-xs text-slate-400 mt-4 font-medium">Limited spots available</p>
-                          </>
+                       {event.website ? (
+                          isFutureEvent ? (
+                            <>
+                              <a href={event.website} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-gradient-to-r from-secondary to-secondary-light hover:from-secondary-light hover:to-secondary text-slate-900 font-bold rounded-xl transition-all shadow-lg hover:shadow-secondary/30 transform hover:-translate-y-1 text-center">
+                                  Register Now
+                              </a>
+                              <p className="text-center text-xs text-slate-400 mt-4 font-medium">Limited spots available</p>
+                            </>
+                          ) : (
+                            <div className="w-full py-4 bg-slate-200 text-slate-500 font-bold rounded-xl text-center cursor-not-allowed border border-slate-200 opacity-80">
+                                Registration Closed
+                            </div>
+                          )
                        ) : (
                           <div className="w-full py-4 bg-slate-100 text-slate-400 font-bold rounded-xl text-center cursor-not-allowed border border-slate-200">
-                              Event Has Ended
+                              {isFutureEvent ? 'Registration Coming Soon' : 'Event Has Ended'}
                           </div>
                        )}
                     </div>
