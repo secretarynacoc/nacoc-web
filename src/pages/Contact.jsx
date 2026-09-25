@@ -115,7 +115,7 @@ const Contact = () => {
                             </div>
                             <div className="ml-5">
                                 <h4 className="font-bold text-slate-900 mb-1">Email Address</h4>
-                                <a href="mailto:secretary@nacoc.org" className="text-slate-500 text-sm break-all hover:text-primary transition-colors">secretary@nacoc.org</a>
+                                <a href="mailto:info@nacoc.org" className="text-slate-500 text-sm break-all hover:text-primary transition-colors">info@nacoc.org</a>
                             </div>
                         </div>
                     </div>
