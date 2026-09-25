@@ -144,9 +144,6 @@ const Events = () => {
                 ? (event.venue.venue || event.venue.address || event.venue.city || '')
                 : (event.venue || '');
 
-              const eventDate = new Date(event.start_date || event.date);
-              const isFutureEvent = !isNaN(eventDate) ? eventDate > new Date() : false;
-
               return (
               <motion.div
                 key={event.id}
@@ -188,33 +185,12 @@ const Events = () => {
                       </p>
                    </div>
                    
-                   <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-slate-100">
-                     <Link 
-                       to={`/events/${event.slug || event.id}`}
-                       className="text-slate-900 font-bold text-sm inline-flex items-center hover:text-primary transition-colors group/btn"
-                     >
-                        Event Details <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                     </Link>
-
-                     {event.website ? (
-                       isFutureEvent ? (
-                         <a
-                           href={event.website}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-secondary to-secondary-light text-slate-900 px-3 py-2 text-xs font-bold shadow-md hover:shadow-secondary/30 transition-all"
-                         >
-                           Register Now
-                         </a>
-                       ) : (
-                         <span className="inline-flex items-center justify-center rounded-lg bg-slate-200 text-slate-500 px-3 py-2 text-xs font-bold cursor-not-allowed opacity-80">
-                           Registration Closed
-                         </span>
-                       )
-                     ) : (
-                       <span className="text-slate-400 text-xs font-bold">Registration Closed</span>
-                     )}
-                   </div>
+                   <Link 
+                     to={`/events/${event.slug || event.id}`}
+                     className="text-slate-900 font-bold text-sm inline-flex items-center hover:text-primary transition-colors group/btn"
+                   >
+                      Event Details <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                   </Link>
                 </div>
               </motion.div>
               );

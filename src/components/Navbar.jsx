@@ -15,7 +15,14 @@ const Navbar = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about-us' },
     { name: 'Programs', path: '/programs' },
-    { name: 'Events', path: '/events' },
+    { 
+      name: 'News', 
+      path: '#',
+      children: [
+        { name: 'Events', path: '/events' },
+        { name: 'Blogs', path: '/blogs' }
+      ]
+    },
     { name: 'Directory', path: '/directory' },
     { name: 'Resources', path: '/resources' },
     { name: 'Membership', path: '/membership' },
