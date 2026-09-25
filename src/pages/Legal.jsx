@@ -22,7 +22,7 @@ const Legal = ({ type }) => {
               <h2>How we use information</h2>
               <p>We use submitted information to respond to inquiries, administer membership and events, provide requested resources, and improve our services. We do not sell personal information.</p>
               <h2>Contact</h2>
-              <p>Questions about this policy may be sent to <a href="mailto:secretary@nacoc.org">secretary@nacoc.org</a>.</p>
+              <p>Questions about this policy may be sent to <a href="mailto:info@nacoc.org">info@nacoc.org</a>.</p>
             </>
           ) : (
             <>
@@ -32,7 +32,7 @@ const Legal = ({ type }) => {
               <h2>Events and resources</h2>
               <p>Event details, availability, and schedules may change. Participation may be subject to additional registration terms provided for the relevant event or program.</p>
               <h2>Contact</h2>
-              <p>Questions about these terms may be sent to <a href="mailto:secretary@nacoc.org">secretary@nacoc.org</a>.</p>
+              <p>Questions about these terms may be sent to <a href="mailto:info@nacoc.org">info@nacoc.org</a>.</p>
             </>
           )}
         </div>
