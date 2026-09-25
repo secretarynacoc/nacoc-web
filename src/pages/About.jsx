@@ -34,6 +34,7 @@ const LeadershipModal = ({ leader, onClose }) => {
                 />
                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent flex flex-col justify-end p-6">
                   <h3 className="text-white text-2xl font-bold">{leader.name}</h3>
+                  <p className="text-secondary font-bold uppercase tracking-wider text-xs">{leader.role}</p>
                </div>
             </div>
              <div className="p-6 max-h-[50vh] overflow-y-auto">
@@ -49,14 +50,16 @@ const LeadershipModal = ({ leader, onClose }) => {
                 </div>
                
                <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Connect</h4>
+               {leader.email && (
                <div className="flex gap-2">
                   <a
-                    href={`mailto:${leader.email || 'info@nacoc.org'}`}
+                    href={`mailto:${leader.email}`}
                     className="flex items-center gap-2 px-3 py-1.5 bg-slate-50 text-slate-700 rounded-md hover:bg-slate-100 transition-colors font-semibold text-xs"
                   >
                      <Mail size={14} /> Email
                   </a>
                </div>
+               )}
             </div>
         </div>
       </motion.div>
@@ -79,6 +82,8 @@ const About = () => {
      {
        name: 'Shraddha Shrestha',
        role: 'President',
+       email: 'president@nacoc.org',
+       showRoleOnCard: true,
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-1.jpg',
        bio: `Shraddha Shrestha is an entrepreneur with cross-sector experience in insurance, real estate, and property management, bringing practical expertise in business operations, client relations, and asset management. She is currently pursuing a Master's in Public Administration at the University of Texas at Arlington, where she is strengthening her expertise in governance, leadership, and organizational strategy with a focus on public impact and institutional effectiveness.
 
@@ -89,6 +94,8 @@ Shraddha brings a multidisciplinary perspective shaped by her entrepreneurial ex
       {
         name: 'Mitesh Koirala',
         role: 'Vice President',
+        email: 'vicepresident@nacoc.org',
+        showRoleOnCard: true,
         img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-1-1.jpg',
          objectPosition: 'center 10%',
         bio: `Mitesh Koirala is a business leader, entrepreneur, and community advocate with nearly two decades of experience living and working in Texas. He has been part of the Dallas\u2013Fort Worth community since 2019 and has been actively engaged in supporting business growth and community development among Nepalese Americans in the region.
@@ -104,6 +111,8 @@ With a strong background in business, real estate, and finance, Mitesh is passio
      {
        name: 'Sanjay K Rajbhandari',
        role: 'General Secretary',
+       email: 'generalsecretary@nacoc.org',
+       showRoleOnCard: true,
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-2.jpg',
        bio: `Sanjay K. Rajbhandari is a seasoned IT professional and entrepreneur based in North Texas with over 30 years of experience across multiple industries, including IT services, real estate, mortgage brokerage, hospitality, and investments. Coming from a humble middle-class background, he is self-made and guided by values of perseverance, humility, and service.
 
@@ -116,12 +125,16 @@ Outside of his professional and community work, Sanjay enjoys traveling, hiking,
      {
        name: 'Basanta Panta',
        role: 'Treasurer',
+       email: 'treasurer@nacoc.org',
+       showRoleOnCard: true,
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-3.jpg',
        bio: `Basanta Panta serves as Treasurer of the Nepalese American Chamber of Commerce, bringing strong financial acumen and a commitment to organizational accountability to the chamber\u2019s leadership team. His role focuses on ensuring financial transparency, responsible fiscal management, and long-term sustainability for the organization\u2019s programs and initiatives.`
      },
      {
        name: 'Prince Agrawal',
        role: 'Secretary',
+       email: 'secretary@nacoc.org',
+       showRoleOnCard: true,
        img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-4.jpg',
        bio: `Prince Agrawal is a dedicated professional based in the Dallas\u2013Fort Worth area, focused on helping individuals and families navigate real estate opportunities with confidence and clarity. He is passionate about creating meaningful connections within the community and supporting others in achieving their personal and professional goals.
 
@@ -264,6 +277,9 @@ He continues to shape the future of resilient, inclusive, and environmentally re
         <div className="p-3 relative -mt-14 z-10 text-center">
             <div className="bg-slate-900/95 backdrop-blur-sm p-3 rounded-lg border border-slate-700 group-hover:border-secondary/30 transition-colors shadow-lg">
                 <h3 className="text-base font-bold text-white mb-0.5 group-hover:text-secondary transition-colors truncate">{leader.name}</h3>
+                {leader.showRoleOnCard && (
+                  <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{leader.role}</p>
+                )}
             </div>
         </div>
     </motion.div>
