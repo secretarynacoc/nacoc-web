@@ -16,8 +16,9 @@ const Navbar = () => {
     { name: 'About', path: '/about-us' },
     { name: 'Programs', path: '/programs' },
     { name: 'Events', path: '/events' },
-    { name: 'Directory', path: '/directory' },
-    { name: 'Resources', path: '/resources' },
+    // Hidden for now: need a robust plan to utilize Directory data.
+    // { name: 'Directory', path: '/directory' },
+    { name: 'Newsletters', path: '/newsletters' },
     { name: 'Membership', path: '/membership' },
     { name: 'Contact', path: '/contact-us' },
   ];

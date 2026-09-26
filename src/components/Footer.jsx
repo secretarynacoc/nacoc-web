@@ -51,14 +51,14 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Resources */}
+          {/* Newsletters */}
           <div>
             <h3 className="text-white text-lg font-heading font-bold mb-6 flex items-center gap-2">
-               <span className="w-1 h-5 bg-secondary rounded-full"></span> Resources
+            <span className="w-1 h-5 bg-secondary rounded-full"></span> Newsletters
             </h3>
             <ul className="space-y-3 text-sm">
               <li><Link to="/events" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> News & Events</Link></li>
-              <li><Link to="/resources" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Community Resources</Link></li>
+              <li><Link to="/newsletters" className="text-slate-300 hover:text-white hover:translate-x-1 inline-flex items-center transition-all w-full"><ArrowRight size={12} className="mr-2 opacity-0 -ml-4 hover:ml-0 hover:opacity-100 transition-all text-secondary" /> Newsletters</Link></li>
             </ul>
           </div>
 

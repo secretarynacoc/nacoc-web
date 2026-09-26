@@ -110,12 +110,12 @@ const Home = () => {
                   },
                   { 
                     icon: <TrendingUp className="w-8 h-8" />, 
-                    title: "Growth", 
-                    desc: "Tools and mentorship to scale your business.",
+                    title: "Newsletters",
+                    desc: "Community updates and insights for local businesses.",
                     bgClass: "bg-white/5 backdrop-blur-sm", // Slate
                     iconColor: "text-white",
                     watermarkIcon: <TrendingUp strokeWidth={1} />,
-                    link: "/resources"
+                    link: "/newsletters"
                   },
                   { 
                     icon: <Calendar className="w-8 h-8" />, 
