@@ -31,6 +31,21 @@ export const api = {
     }
   },
 
+  getNewsletters: async (page = 1, perPage = 100) => {
+    try {
+      const categories = await request(`${BASE_URL}/categories?slug=newsletters`);
+      const newsletterCategory = Array.isArray(categories) ? categories[0] : null;
+      if (!newsletterCategory) return [];
+
+      return await request(
+        `${BASE_URL}/posts?categories=${newsletterCategory.id}&_embed&page=${page}&per_page=${perPage}&orderby=date&order=desc`
+      );
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
+  },
+
   getPostById: async (id) => {
     try {
       return await request(`${BASE_URL}/posts/${id}?_embed`);
@@ -51,7 +66,7 @@ export const api = {
   },
 
   // ---------------------------------------------------------------------------
-  // Pages — wp/v2/pages (used for static content like About, Programs, Resources)
+  // Pages — wp/v2/pages (used for static content like About, Programs, Newsletters)
   // ---------------------------------------------------------------------------
   getPageBySlug: async (slug) => {
     try {

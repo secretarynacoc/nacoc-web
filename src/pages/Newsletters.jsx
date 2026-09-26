@@ -1,40 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileText, Mic, ExternalLink, Download, Play, Zap, Coffee, Lightbulb, UserSearch, HelpCircle, TrendingUp } from 'lucide-react';
+import { FileText, Mic, ExternalLink, Download, Play, Zap, Coffee, Lightbulb, UserSearch, HelpCircle, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
+import { api } from '../services/api';
 
-const Resources = () => {
-  const newsletters = [
-    { month: 'May', year: '2026', file: 'nacoc-newsletter-may-2026.pdf' },
-    { month: 'February', year: '2026', file: 'nacoc-newsletter-feb-2026.pdf' },
-    { month: 'November', year: '2025', file: 'nacoc-newsletter-nov-2025.pdf' },
-    { month: 'August', year: '2025', file: 'nacoc-newsletter-aug-2025.pdf' },
-    { month: 'May', year: '2025', file: 'nacoc-newsletter-may-2025.pdf' },
-    { month: 'February', year: '2025', file: 'nacoc-newsletter-feb-2025.pdf' },
-    { month: 'October', year: '2024', file: 'nacoc-newsletter-oct-2024.pdf' },
-    { month: 'July', year: '2024', file: 'nacoc-newsletter-jul-2024.pdf' },
-    { month: 'April', year: '2024', file: 'nacoc-newsletter-apr-2024.pdf' },
-  ];
+const adaptNewsletter = (post) => {
+    const postDate = post.date ? new Date(`${post.date.slice(0, 10)}T12:00:00`) : null;
+    const content = new DOMParser().parseFromString(post.content?.rendered || '', 'text/html');
+    const excerpt = new DOMParser().parseFromString(post.excerpt?.rendered || '', 'text/html').body.textContent.trim();
+    const pdfLink = Array.from(content.querySelectorAll('a[href]'))
+        .find((link) => /\.pdf(?:$|[?#])/i.test(link.href));
 
-  const handleDownload = async (e, item) => {
-    e.preventDefault();
-    const wpOrigin = import.meta.env.VITE_WP_ORIGIN || 'https://cms.nacoc.org';
-    const url = `${wpOrigin}/wp-content/uploads/newsletters/${item.file}`;
-    try {
-      const res = await fetch(url, { mode: 'cors' });
-      if (!res.ok) throw new Error('File not found');
-      const blob = await res.blob();
-      const blobUrl = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = blobUrl;
-      a.download = item.file;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(blobUrl);
-    } catch {
-      // File not yet uploaded — do nothing (no redirect)
-    }
-  };
+    return {
+        id: post.id,
+        month: postDate && !Number.isNaN(postDate.getTime())
+            ? postDate.toLocaleDateString('en-US', { month: 'long' })
+            : 'Newsletter',
+        year: postDate && !Number.isNaN(postDate.getTime())
+            ? postDate.getFullYear()
+            : '',
+        summary: excerpt || 'Community Updates & Highlights',
+        pdfUrl: pdfLink?.href || '',
+    };
+};
+
+const Newsletters = () => {
+    const [newsletters, setNewsletters] = useState([]);
+    const [newslettersLoading, setNewslettersLoading] = useState(true);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 5;
+    const totalPages = Math.ceil(newsletters.length / pageSize);
+    const visibleNewsletters = newsletters.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
+    useEffect(() => {
+        const loadNewsletters = async () => {
+            const posts = await api.getNewsletters();
+            setNewsletters(posts.map(adaptNewsletter));
+            setNewslettersLoading(false);
+        };
+
+        loadNewsletters();
+    }, []);
 
   const podcasts = [
     {
@@ -97,17 +102,17 @@ const Resources = () => {
                 className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full backdrop-blur-md text-slate-300 font-bold text-xs uppercase tracking-widest mb-6"
             >
                 <span className="w-2 h-2 rounded-full bg-slate-400 animate-pulse"></span>
-                Curated High-Value Content
+                NACOC Updates & Insights
             </motion.div>
             <motion.h1 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-5xl lg:text-7xl font-heading font-bold text-white mb-6 tracking-tight"
             >
-                Resource <span className="text-slate-400">Library</span>
+                Newsletters
             </motion.h1>
             <p className="text-xl text-slate-400 max-w-2xl mx-auto font-body leading-relaxed">
-                Empower your journey with our collection of monthly insights, expert audio sessions, and comprehensive guides.
+                Read community updates, hear from Nepali business leaders, and explore practical guides for local businesses.
             </p>
         </div>
       </section>
@@ -126,9 +131,13 @@ const Resources = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {newsletters.map((item, index) => (
+                {newslettersLoading ? (
+                    <p className="text-slate-500 md:col-span-2 lg:col-span-3">Loading newsletters...</p>
+                ) : newsletters.length === 0 ? (
+                    <p className="text-slate-500 md:col-span-2 lg:col-span-3">No newsletters are available yet.</p>
+                ) : visibleNewsletters.map((item) => (
                     <motion.div
-                        key={index}
+                        key={item.id}
                         whileHover={{ y: -4 }}
                         className="group bg-slate-50 border border-slate-100 p-6 rounded-2xl hover:bg-white hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300 flex items-start gap-4"
                     >
@@ -140,18 +149,49 @@ const Resources = () => {
                                 <h3 className="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">{item.month}</h3>
                                 <span className="text-[10px] font-bold bg-slate-200 text-slate-600 px-2 py-0.5 rounded uppercase">{item.year}</span>
                              </div>
-                             <p className="text-xs text-slate-500 mb-3">Community Updates & Highlights</p>
-                              <a
-                                href="#"
-                                onClick={(e) => handleDownload(e, item)}
-                                className="inline-flex items-center text-xs font-bold text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity -ml-2 group-hover:ml-0 duration-300 hover:text-blue-800"
-                             >
-                                Download PDF <Download size={12} className="ml-1" />
-                             </a>
+                            <p className="text-xs text-slate-500 mb-3">{item.summary}</p>
+                            {item.pdfUrl && (
+                                <a
+                                    href={item.pdfUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center text-xs font-bold text-blue-600 hover:text-blue-800"
+                                >
+                                    Download PDF <Download size={12} className="ml-1" />
+                                </a>
+                            )}
                         </div>
                     </motion.div>
                 ))}
             </div>
+            {!newslettersLoading && totalPages > 1 && (
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p className="text-sm text-slate-500">
+                        Showing {(currentPage - 1) * pageSize + 1}-{Math.min(currentPage * pageSize, newsletters.length)} of {newsletters.length}
+                    </p>
+                    <div className="flex items-center gap-3">
+                        <button
+                            type="button"
+                            onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                            disabled={currentPage === 1}
+                            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                        >
+                            <ChevronLeft size={16} /> Previous
+                        </button>
+                        <span className="text-sm font-medium text-slate-600" aria-live="polite">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        <button
+                            type="button"
+                            onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
+                            disabled={currentPage === totalPages}
+                            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-40"
+                        >
+                            Next <ChevronRight size={16} />
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
 
         {/* Podcast Feature */}
@@ -237,4 +277,4 @@ const Resources = () => {
   );
 };
 
-export default Resources;
+export default Newsletters;

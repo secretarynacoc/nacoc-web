@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Calendar, MapPin, Clock, ArrowRight, Search } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { api } from '../services/api';
 import { cleanWpHtml } from '../utils/wpContent';
 
 const Events = () => {
+  const { pathname } = useLocation();
+  const isPastPage = pathname === '/events/past';
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
@@ -61,6 +63,114 @@ const Events = () => {
     return sorted;
   }, [events, searchQuery]);
 
+  const upcomingEvents = useMemo(
+    () => processedEvents.filter((event) => {
+      const eventDate = new Date(event.start_date || event.date);
+      return !isNaN(eventDate) && eventDate >= new Date();
+    }),
+    [processedEvents]
+  );
+
+  const pastEvents = useMemo(
+    () => processedEvents.filter((event) => {
+      const eventDate = new Date(event.start_date || event.date);
+      return !isNaN(eventDate) && eventDate < new Date();
+    }),
+    [processedEvents]
+  );
+  const displayedEvents = isPastPage ? pastEvents : upcomingEvents;
+
+  const renderEventCard = (event, index, isPast = false) => {
+    const dateObj = new Date(event.start_date || event.date);
+    let month = 'TBA';
+    let day = '-';
+    if (!isNaN(dateObj)) {
+      try {
+        month = dateObj.toLocaleDateString('en-US', { month: 'short' });
+        day = dateObj.toLocaleDateString('en-US', { day: 'numeric' });
+      } catch (e) {
+        console.error('Invalid date parsing', event);
+      }
+    }
+
+    const imageUrl = (typeof event.image === 'object' ? event.image?.url : (typeof event.image === 'string' && event.image !== '' ? event.image : null)) || event.featured_image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
+    const safeTitle = (typeof event.title === 'object' ? event.title?.rendered : event.title) || 'Event';
+    const venueName = typeof event.venue === 'object' && event.venue !== null
+      ? (event.venue.venue || event.venue.address || event.venue.city || '')
+      : (event.venue || '');
+    const isFutureEvent = !isNaN(dateObj) ? dateObj > new Date() : false;
+
+    return (
+      <motion.div
+        key={event.id}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.1 }}
+        className={`group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full ${isPast ? 'opacity-85 border border-slate-200' : ''}`}
+      >
+        <div className="relative overflow-hidden h-64">
+          <img
+            src={imageUrl}
+            alt={safeTitle.replace(/<[^>]+>/g, '')}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'; }}
+          />
+          <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-center shadow-md">
+            <span className="block text-xs font-bold text-slate-500 uppercase">{month}</span>
+            <span className="block text-xl font-bold text-slate-900">{day}</span>
+          </div>
+        </div>
+
+        <div className="p-8 flex flex-col justify-between flex-1">
+          <div>
+            {event.start_date && !isNaN(new Date(event.start_date)) && (
+              <div className="flex items-center text-xs font-bold text-primary uppercase tracking-wider mb-2">
+                <Clock size={14} className="mr-1" /> {new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </div>
+            )}
+            <h3 className="font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors text-2xl" dangerouslySetInnerHTML={{ __html: safeTitle }}>
+            </h3>
+            {venueName && (
+              <div className="flex items-start text-slate-500 mb-4 text-sm font-medium">
+                <MapPin size={16} className="mr-2 mt-0.5 text-slate-400 shrink-0" />
+                <span>{venueName}</span>
+              </div>
+            )}
+            <p className="text-slate-600 mb-6 leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: cleanWpHtml((typeof event.description === 'object' ? event.description?.rendered : event.description) || '') || 'Event details coming soon' }}>
+            </p>
+          </div>
+
+          <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-slate-100">
+            <Link
+              to={`/events/${event.slug || event.id}`}
+              className="text-slate-900 font-bold text-sm inline-flex items-center hover:text-primary transition-colors group/btn"
+            >
+              Event Details <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+
+            {isPast || !isFutureEvent ? (
+              <span className="inline-flex items-center justify-center rounded-lg bg-slate-200 text-slate-500 px-3 py-2 text-xs font-bold cursor-not-allowed opacity-80">
+                Registration Closed
+              </span>
+            ) : event.website ? (
+              <a
+                href={event.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-secondary to-secondary-light text-slate-900 px-3 py-2 text-xs font-bold shadow-md hover:shadow-secondary/30 transition-all"
+              >
+                Register Now
+              </a>
+            ) : (
+              <span className="text-slate-400 text-xs font-bold">Registration Closed</span>
+            )}
+          </div>
+        </div>
+      </motion.div>
+    );
+  };
+
   if (loading) {
     return (
         <div className="bg-slate-50 min-h-screen pt-32 flex flex-col items-center justify-center">
@@ -112,114 +222,29 @@ const Events = () => {
             </div>
           </div>
 
-          {processedEvents.length === 0 ? (
+          <div className="flex items-center justify-between gap-4 mb-8">
+            <h2 className="text-2xl lg:text-3xl font-heading font-bold text-slate-900">
+              {isPastPage ? 'Past Events' : 'Upcoming Events'}
+            </h2>
+            <Link
+              to={isPastPage ? '/events' : '/events/past'}
+              className="text-primary font-bold text-sm inline-flex items-center hover:underline shrink-0"
+            >
+              {isPastPage ? 'Upcoming Events' : 'Past Events'} <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+          </div>
+
+          {displayedEvents.length === 0 ? (
              <div className="text-center py-20">
                 <Calendar size={48} className="mx-auto text-slate-300 mb-4" />
-                <h3 className="text-xl font-bold text-slate-500">No events found</h3>
+                <h3 className="text-xl font-bold text-slate-500">
+                  {isPastPage ? 'No past events found' : 'No upcoming events found'}
+                </h3>
              </div>
           ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {processedEvents.map((event, index) => {
-              // Handle Tribe Events API date format
-              const dateObj = new Date(event.start_date || event.date);
-              let month = 'TBA';
-              let day = '-';
-              if (!isNaN(dateObj)) {
-                 try {
-                   month = dateObj.toLocaleDateString('en-US', { month: 'short' });
-                   day = dateObj.toLocaleDateString('en-US', { day: 'numeric' });
-                 } catch (e) {
-                   console.error("Invalid date parsing", event);
-                 }
-              }
-
-              // Get featured image from Tribe API (image can be object or string)
-              const imageUrl = (typeof event.image === 'object' ? event.image?.url : (typeof event.image === 'string' && event.image !== '' ? event.image : null)) || event.featured_image || 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80';
-
-              // Extract title safely
-              const safeTitle = (typeof event.title === 'object' ? event.title?.rendered : event.title) || 'Event';
-              
-              // Extract venue name (Tribe API returns venue as object)
-              const venueName = typeof event.venue === 'object' && event.venue !== null
-                ? (event.venue.venue || event.venue.address || event.venue.city || '')
-                : (event.venue || '');
-
-              const eventDate = new Date(event.start_date || event.date);
-              const isFutureEvent = !isNaN(eventDate) ? eventDate > new Date() : false;
-
-              return (
-              <motion.div
-                key={event.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-full`}
-              >
-                <div className="relative overflow-hidden h-64">
-                   <img 
-                     src={imageUrl} 
-                     alt={safeTitle.replace(/<[^>]+>/g, '')} 
-                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                     onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'; }}
-                   />
-                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-center shadow-md">
-                      <span className="block text-xs font-bold text-slate-500 uppercase">{month}</span>
-                      <span className="block text-xl font-bold text-slate-900">{day}</span>
-                   </div>
-                </div>
-                
-                <div className="p-8 flex flex-col justify-between flex-1">
-                   <div>
-                      {event.start_date && !isNaN(new Date(event.start_date)) && (
-                          <div className="flex items-center text-xs font-bold text-primary uppercase tracking-wider mb-2">
-                            <Clock size={14} className="mr-1" /> {new Date(event.start_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                          </div>
-                      )}
-                      <h3 className="font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors text-2xl" dangerouslySetInnerHTML={{ __html: safeTitle }}>
-                      </h3>
-                      {venueName && (
-                        <div className="flex items-start text-slate-500 mb-4 text-sm font-medium">
-                           <MapPin size={16} className="mr-2 mt-0.5 text-slate-400 shrink-0" />
-                           <span>{venueName}</span>
-                        </div>
-                      )}
-                      <p className="text-slate-600 mb-6 leading-relaxed line-clamp-3" dangerouslySetInnerHTML={{ __html: cleanWpHtml((typeof event.description === 'object' ? event.description?.rendered : event.description) || '') || 'Event details coming soon' }}>
-                      </p>
-                   </div>
-                   
-                   <div className="flex items-center justify-between gap-3 mt-4 pt-4 border-t border-slate-100">
-                     <Link 
-                       to={`/events/${event.slug || event.id}`}
-                       className="text-slate-900 font-bold text-sm inline-flex items-center hover:text-primary transition-colors group/btn"
-                     >
-                        Event Details <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                     </Link>
-
-                     {event.website ? (
-                       isFutureEvent ? (
-                         <a
-                           href={event.website}
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-secondary to-secondary-light text-slate-900 px-3 py-2 text-xs font-bold shadow-md hover:shadow-secondary/30 transition-all"
-                         >
-                           Register Now
-                         </a>
-                       ) : (
-                         <span className="inline-flex items-center justify-center rounded-lg bg-slate-200 text-slate-500 px-3 py-2 text-xs font-bold cursor-not-allowed opacity-80">
-                           Registration Closed
-                         </span>
-                       )
-                     ) : (
-                       <span className="text-slate-400 text-xs font-bold">Registration Closed</span>
-                     )}
-                   </div>
-                </div>
-              </motion.div>
-              );
-            })}
-          </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {displayedEvents.map((event, index) => renderEventCard(event, index, isPastPage))}
+            </div>
           )}
         </div>
       </section>

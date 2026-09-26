@@ -12,7 +12,7 @@ import MembershipCheckout from './pages/MembershipCheckout';
 import Contact from './pages/Contact';
 import BusinessDirectory from './pages/BusinessDirectory';
 import BusinessDetails from './pages/BusinessDetails';
-import Resources from './pages/Resources';
+import Newsletters from './pages/Newsletters';
 import Events from './pages/Events';
 import EventDetails from './pages/EventDetails';
 import Blogs from './pages/Blogs';
@@ -64,8 +64,9 @@ function App() {
                       <Route path="/contact-us" element={<Contact />} />
                       <Route path="/directory" element={<BusinessDirectory />} />
                       <Route path="/directory/:slug" element={<BusinessDetails />} />
-                      <Route path="/resources" element={<Resources />} />
+                      <Route path="/newsletters" element={<Newsletters />} />
                       <Route path="/events" element={<Events />} />
+                      <Route path="/events/past" element={<Events />} />
                       <Route path="/events/:slug" element={<EventDetails />} />
                       <Route path="/blogs" element={<Blogs />} />
                       <Route path="/blogs/:slug" element={<BlogDetails />} />
