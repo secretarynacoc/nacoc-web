@@ -199,6 +199,33 @@ A devoted family man, Bijaya is the proud father of two daughters. He values fam
      },
   ];
 
+  const chamberPromotionBoard = [
+    {
+      name: 'Baikuntha Thapa',
+      role: 'Chamber Promotion Board',
+      img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Baikuntha_Thapa.png',
+      bio: `Baikuntha Thapa is a founder and two term past President of the Nepalese Society of Texas (NST) and currently chairs its Board of Trustees. He is also a NACOC Patron and NCSC Trustee. A business owner since the early 2000s, he has multiple retail and real estate investments. He attended Navarro College and the University of Texas at Arlington.`
+    },
+    {
+      name: 'Sita Basnet Sapkota',
+      role: 'Chamber Promotion Board',
+      img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Sita_Basnet_Sapkota.png',
+      bio: `Sita Basnet Sapkota is an entrepreneur and community leader in North Texas. She serves as President of the Nepali Cultural and Spiritual Center (NCSC), supporting cultural, spiritual, and community initiatives. Her business experience, organizational leadership, and longstanding community service bring a valuable perspective to the NACOC Chamber Promotion Board.`
+    },
+    {
+      name: 'Gokarna Dahal',
+      role: 'Chamber Promotion Board',
+      img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Gokarna_Dahal.png',
+      bio: `Gokarna Dahal is a Texas based entrepreneur and member of the Nepali American community. He previously served as Vice President of the Nepalese American Chamber of Commerce (NACOC). His experience as a business owner and involvement in community initiatives reflect his commitment to entrepreneurship and community development. He brings business and organizational leadership experience to the NACOC Chamber Promotion Board.`
+    },
+    {
+      name: 'Uttam Lamichhane',
+      role: 'Chamber Promotion Board',
+      img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Uttam_Lamichhane.png',
+      bio: `Uttam Lamichhane is a North Texas entrepreneur with experience across business, investment, and real estate ventures. Alongside his business activities, he has remained engaged with the Nepali American community and its institutions. He brings practical business experience and an investment perspective to the interests and challenges facing entrepreneurs in the community.`
+    },
+  ];
+
   const directorsAdvisors = [
      {
        name: 'Rupa Laxmi Shah',
@@ -382,7 +409,7 @@ He continues to shape the future of resilient, inclusive, and environmentally re
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl lg:text-4xl font-heading font-bold mb-4 text-white">Our Leadership</h2>
-            <p className="text-slate-400 text-base">Meet the dedicated leaders serving the 2026-2027 term.</p>
+            <p className="text-slate-400 text-base">Meet our dedicated leadership team.</p>
           </div>
 
           <div className="max-w-7xl mx-auto">
@@ -398,6 +425,13 @@ He continues to shape the future of resilient, inclusive, and environmentally re
                 {boardDirectors.map(renderMemberCard)}
             </div>
             
+            {/* Chamber Promotion Board */}
+            <SectionHeading><span className="text-white">Chamber Promotion Board (CPB)</span></SectionHeading>
+            <p className="text-center text-slate-400 -mt-6 mb-10">2025–2026</p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5 mb-12">
+                {chamberPromotionBoard.map(renderMemberCard)}
+            </div>
+
              {/* Advisors */}
              <SectionHeading><span className="text-white">Advisors</span></SectionHeading>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
