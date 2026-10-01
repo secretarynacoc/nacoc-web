@@ -191,24 +191,28 @@ A devoted family man, Bijaya is the proud father of two daughters. He values fam
     {
       name: 'Baikuntha Thapa',
       role: 'Chairperson',
+      email: 'cpb-chairperson@nacoc.org',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Baikuntha_Thapa.png',
       bio: `Baikuntha Thapa is a founder and two term past President of the Nepalese Society of Texas (NST) and currently chairs its Board of Trustees. He is also a NACOC Patron and NCSC Trustee. A business owner since the early 2000s, he has multiple retail and real estate investments. He attended Navarro College and the University of Texas at Arlington.`
     },
     {
       name: 'Sita Basnet Sapkota',
       role: 'CPB Member',
+      email: 'sitasapkota7@yahoo.com',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Sita_Basnet_Sapkota.png',
       bio: `Sita Basnet Sapkota is an entrepreneur and community leader in North Texas. She serves as President of the Nepali Cultural and Spiritual Center (NCSC), supporting cultural, spiritual, and community initiatives. Her business experience, organizational leadership, and longstanding community service bring a valuable perspective to the NACOC Chamber Promotion Board.`
     },
     {
       name: 'Gokarna Dahal',
       role: 'CPB Member',
+      email: 'gokarnad@hotmail.com',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Gokarna_Dahal.png',
       bio: `Gokarna Dahal is a Texas based entrepreneur and member of the Nepali American community. He previously served as Vice President of the Nepalese American Chamber of Commerce (NACOC). His experience as a business owner and involvement in community initiatives reflect his commitment to entrepreneurship and community development. He brings business and organizational leadership experience to the NACOC Chamber Promotion Board.`
     },
     {
       name: 'Uttam Lamichhane',
       role: 'CPB Member',
+      email: 'uttamlamichhane1@gmail.com',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Uttam_Lamichhane.png',
       bio: `Uttam Lamichhane is a North Texas entrepreneur with experience across business, investment, and real estate ventures. Alongside his business activities, he has remained engaged with the Nepali American community and its institutions. He brings practical business experience and an investment perspective to the interests and challenges facing entrepreneurs in the community.`
     },
