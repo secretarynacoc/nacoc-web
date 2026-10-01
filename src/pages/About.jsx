@@ -154,18 +154,6 @@ A passionate advocate for public health and community service, Dr. Upadhyay curr
 
 Dr. Upadhyay is also a strong advocate for women\u2019s empowerment, mentorship, and healthcare education. Outside of her professional and volunteer work, she enjoys cooking, gardening, yoga, meditation, and spending time with her husband and three children.`
      },
-     {
-       name: 'Pradip Giri',
-       role: 'Executive Member',
-       img: 'https://cms.nacoc.org/wp-content/uploads/2026/06/image-6.jpg',
-       bio: `Pradip Giri is an entrepreneur, retail business owner, and community leader with a background in accounting and more than a decade of corporate experience. He currently manages eight retail locations and leads a team of over 50 employees, demonstrating a strong commitment to operational excellence, strategic growth, and customer-focused service. His professional journey reflects a passion for building successful businesses while creating meaningful opportunities within the communities he serves.
-
-Beyond his business accomplishments, Pradip is a dedicated civic leader and advocate for community engagement. He served two terms as General Secretary of the Nepalese American Chamber of Commerce, contributing to initiatives that support entrepreneurship and economic development. He has also been actively involved with the Walk for Nepal fundraising campaign for over 14 years, helping advance charitable and community-focused causes.
-
-Pradip is the founder of the MoMo Festival, one of the largest annual community food festivals in the region, attracting more than 15,000 attendees each year. He also established the Buwa Aama Picnic, a beloved community event dedicated to honoring parents, which continues to thrive under the leadership of the Walk for Nepal team.
-
-Today, Pradip is focused on urban governance, real estate investment, and strategic infrastructure development. Whether optimizing business performance, investing in sustainable growth opportunities, or exploring avenues for public service and municipal leadership, he remains committed to building systems that promote economic prosperity, community well-being, and long-term sustainability.`
-     },
       {
         name: 'Samikshya Ojha',
         role: 'Executive Member',
@@ -202,25 +190,25 @@ A devoted family man, Bijaya is the proud father of two daughters. He values fam
   const chamberPromotionBoard = [
     {
       name: 'Baikuntha Thapa',
-      role: 'Chamber Promotion Board',
+      role: 'Chairperson',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Baikuntha_Thapa.png',
       bio: `Baikuntha Thapa is a founder and two term past President of the Nepalese Society of Texas (NST) and currently chairs its Board of Trustees. He is also a NACOC Patron and NCSC Trustee. A business owner since the early 2000s, he has multiple retail and real estate investments. He attended Navarro College and the University of Texas at Arlington.`
     },
     {
       name: 'Sita Basnet Sapkota',
-      role: 'Chamber Promotion Board',
+      role: 'CPB Member',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Sita_Basnet_Sapkota.png',
       bio: `Sita Basnet Sapkota is an entrepreneur and community leader in North Texas. She serves as President of the Nepali Cultural and Spiritual Center (NCSC), supporting cultural, spiritual, and community initiatives. Her business experience, organizational leadership, and longstanding community service bring a valuable perspective to the NACOC Chamber Promotion Board.`
     },
     {
       name: 'Gokarna Dahal',
-      role: 'Chamber Promotion Board',
+      role: 'CPB Member',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Gokarna_Dahal.png',
       bio: `Gokarna Dahal is a Texas based entrepreneur and member of the Nepali American community. He previously served as Vice President of the Nepalese American Chamber of Commerce (NACOC). His experience as a business owner and involvement in community initiatives reflect his commitment to entrepreneurship and community development. He brings business and organizational leadership experience to the NACOC Chamber Promotion Board.`
     },
     {
       name: 'Uttam Lamichhane',
-      role: 'Chamber Promotion Board',
+      role: 'CPB Member',
       img: 'https://cms.nacoc.org/wp-content/uploads/2026/09/Uttam_Lamichhane.png',
       bio: `Uttam Lamichhane is a North Texas entrepreneur with experience across business, investment, and real estate ventures. Alongside his business activities, he has remained engaged with the Nepali American community and its institutions. He brings practical business experience and an investment perspective to the interests and challenges facing entrepreneurs in the community.`
     },
